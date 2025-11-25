@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Greggy Deramas Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <!-- Added Font Awesome for Music Control Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Custom Styles for Music Control (Matching your theme) -->
+  <style>
+    /* Define variables if not already in style.css */
+    :root {
+        --bright-green: #22C55E; 
+        --section-bg: #1D1F29;
+    }
+    
+    /* --- MUSIC CONTROLS STYLES --- */
+    .music-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--section-bg);
+      border: 2px solid var(--bright-green);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
+    .music-control:hover {
+        box-shadow: 0 0 20px var(--bright-green);
+        transform: scale(1.1);
+    }
+    .music-control i {
+        color: var(--bright-green);
+        font-size: 1.5rem;
+    }
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">MY PORTFOLIO</div>
+
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+      </button>
+
+      <div class="nav-links">
+        <div class="contact-me">Contact Me</div>
+        <div class="icons">
+          <a href="mailto:greggyderamas@gmail.com" target="_blank" rel="noopener" title="Email">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg" alt="Gmail" />
+          </a>
+          <a href="https://www.tiktok.com/@glangpo?_r=1&_t=ZS-91aQYePB2kT" target="_blank" rel="noopener" title="TikTok">
+            <img src="https://cdn-icons-png.flaticon.com/512/3046/3046123.png" alt="TikTok" />
+          </a>
+          <a href="https://www.instagram.com/greg.deramas/" target="_blank" rel="noopener" title="Instagram">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png" alt="Instagram" />
+          </a>
+          <a href="https://www.facebook.com/greggy.deramas" target="_blank" rel="noopener" title="Facebook">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_(2019).png" alt="Facebook" />
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="content-section">
+      <div class="left-panel fade-in">
+        <p class="intro-text">Hello Everyone.</p>
+        <h1 class="main-title">I'm Greggy Deramas</h1>
+
+        <button class="civil-tech-btn ripple" aria-label="Civil Technology">
+          <span>CIVIL TECHNOLOGY</span>
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#000"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="arrow-icon"
+          >
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+
+        <div class="category-buttons">
+
+          <a href="autobiography.html" class="cat-btn ripple">
+            <span class="num-circle">1</span> AUTOBIOGRAPHY
+          </a>
+
+          <a href="song.html" class="cat-btn ripple">
+            <span class="num-circle">2</span> SONG
+          </a>
+
+          <a href="gallery.html" class="cat-btn ripple">
+            <span class="num-circle">3</span> MY GALLERY
+          </a>
+
+          <a href="video.html" class="cat-btn ripple">
+            <span class="num-circle">4</span> MY VIDEO
+          </a>
+
+        </div>
+      </div>
+
+      <div class="right-panel fade-in">
+        <img
+          src="image01.jpg"
+          alt="Greggy Deramas with red car"
+          class="profile-photo"
+          loading="lazy"
+        />
+      </div>
+    </section>
+  </main>
+
+  <!-- MUSIC PLAYER AND CONTROL -->
+  <audio id="backgroundMusic" loop>
+      <!-- Placeholder for royalty-free background music (since direct YouTube links cannot be used for background audio) -->
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+  </audio>
+
+  <div id="musicControl" class="music-control">
+      <i class="fas fa-play"></i>
+  </div>
+
+  <script>
+    // Music control logic
+    const music = document.getElementById('backgroundMusic');
+    const control = document.getElementById('musicControl');
+    const icon = control.querySelector('i');
+    let isPlaying = false;
+
+    // Toggle music playback and update the icon
+    function toggleMusic() {
+        if (isPlaying) {
+            music.pause();
+            icon.classList.remove('fa-pause');
+            icon.classList.add('fa-play');
+            isPlaying = false;
+        } else {
+            // Attempt to play music. This relies on user interaction due to browser policies.
+            music.play().then(() => {
+                icon.classList.remove('fa-play');
+                icon.classList.add('fa-pause');
+                isPlaying = true;
+            }).catch(error => {
+                console.log("Autoplay failed. User must interact to start music.", error);
+            });
+        }
+    }
+
+    // Event listener for the music control button
+    control.addEventListener('click', toggleMusic);
+  </script>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
